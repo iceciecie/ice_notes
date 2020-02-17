@@ -1,0 +1,14 @@
+- 全局加锁的命令：Flush table with red lock 简称FTWRL
+- 数据库的多版本并发控制（MVCC）
+  - 对每一条更新操作，mysql都会保存对应的回滚操作，当启动不同事务创建不同视图时，基于创建视图的时间点，根据当前最新数据和回滚操作记录，来实现不同时间时间的视图
+- mysql自带的逻辑备份工具为mysqldump，当mysqldump使用参数-single-transation时，导数据前会先启动一个事务，来确保拿到一致性视图。由于MVCC的支持，在这个过程中数据是可以正常更新的
+- 设置数据库只读：set global readonly=true
+- ALTER更新语句中设置/不设置超时时间的sql
+  - ALTER TABLE table name NOTWAIT ADD colunm...
+  - ALTER TABLE table name WAIT n ADD column...
+- 给表加锁解锁：lock tables ... read/write，unlock
+- 在MYSQL的information schema库的innodb trx中可以查看当前执行中的事务
+- 设置行锁等待时间的参数：innodb lock wait timeout，默认值为50s
+- 发起死锁检查的逻辑：innodb deadlock detect设置为on表示开启死锁检查逻辑，默认值为on
+- begin/start transation命令并不是一个事务的起点，执行它们之后，在执行第一个操作InnoDB表的语句，事务才真正启动。
+- start transation with consistent snapshot命令可以马上启动一个事务
