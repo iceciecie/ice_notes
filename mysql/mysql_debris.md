@@ -12,3 +12,4 @@
 - 发起死锁检查的逻辑：innodb deadlock detect设置为on表示开启死锁检查逻辑，默认值为on
 - begin/start transation命令并不是一个事务的起点，执行它们之后，在执行第一个操作InnoDB表的语句，事务才真正启动。
 - start transation with consistent snapshot命令可以马上启动一个事务
+- WAL，Write-Ahead-Logging。关键点在于先写日志，再写磁盘
