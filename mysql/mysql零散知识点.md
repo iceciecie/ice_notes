@@ -13,3 +13,12 @@
 - begin/start transation命令并不是一个事务的起点，执行它们之后，在执行第一个操作InnoDB表的语句，事务才真正启动。
 - start transation with consistent snapshot命令可以马上启动一个事务
 - WAL，Write-Ahead-Logging。关键点在于先写日志，再写磁盘
+- 索引的“区分度”：一个索引上不同的值越多，区分度越好
+- 通过设置innodb_stats_persistent来设置索引的才采用页数N和触发索引重新统计需要的数据变更比例1/M
+  - 设置为on的时候，表示统计信息会持久化存储。这时默认的N是20，M是10
+  - 设置为off的时候，表示统计信息只存储在内存中。这时，默认的N是8，M是16
+- 设置IO能力：innodb_io_capacity
+- 设置最大脏页比例：innodb_max_dirty_pages_pct
+- 设置是否连带刷脏页
+  - innodb_flush_neighbors=1:连带刷脏页
+  - innodb_flush_neighbors=0:不连带刷脏页
