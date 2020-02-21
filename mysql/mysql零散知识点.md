@@ -22,3 +22,4 @@
 - 设置是否连带刷脏页
   - innodb_flush_neighbors=1:连带刷脏页
   - innodb_flush_neighbors=0:不连带刷脏页
+- 在InnoDB引擎中，若没有为表创建主键，或表的主键被删除了，那么InnoDB会自己生成一个长度为6字节的rowId来作为主键
