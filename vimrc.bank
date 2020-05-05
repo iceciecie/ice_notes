@@ -1,0 +1,97 @@
+"设置空格位LEADER键
+let mapleader=" "
+
+"not create temp file
+set noswapfile
+
+execute pathogen#infect()
+"打开高亮
+synta on
+"安装插件配置
+filetype on
+filetype indent on
+filetype plugin on
+filetype plugin indent on
+
+"不兼容vi
+set nocompatible
+"设置tab四个空格
+set ts=4
+set sts=4
+set expandtab
+"高亮显示当前行
+set cursorline
+"高亮搜索
+set hlsearch
+"搜索实时高亮
+set incsearch
+set ignorecase
+"智能大小写
+set smartcase
+"显示行号
+set number
+"设置行号随动
+set relativenumber
+"设置距离行底10行
+set scrolloff=10
+"关闭兼容vi模式
+set nocompatible             
+"显示执行的命令
+set showcmd
+"设置命令补全
+set wildmenu
+
+"设置颜色主题为默认
+colorscheme desert
+
+"设置空格+回车 不显示高亮
+noremap <LEADER><CR> :nohlsearch<CR>
+"设置;y复制数据到系统剪贴板
+noremap ;y "+y
+"设置;p粘贴系统剪贴板的内容到vim
+noremap ;p "+p
+"设置tt启动NERDTreeToggle
+noremap tt :NERDTreeToggle<CR>
+
+"设置插入模式快捷左移动
+inoremap <C-h> <Left>
+"设置插入模式快捷右移动
+inoremap <C-l> <Right>
+"设置插入模式快捷上移动
+inoremap <C-j> <Down>
+"设置W为保存按键
+inoremap <C-k> <Up>
+"设置插入模式删除后面一个字符
+inoremap <LEADER>x <ESC>xi
+
+"设置插入模式快捷下移动
+map W :w<CR>
+"设置Q为退出按键
+map Q :q<CR>
+"设置R位刷新vim配置
+map R :source $MYVIMRC<CR>
+
+"分屏移动, 移动到左边分屏
+map <LEADER>h <C-w>h
+"分屏移动, 移动到右边分屏
+map <LEADER>l <C-w>l
+"分屏移动, 移动到上面分屏
+map <LEADER>k <C-w>k
+"分屏移动, 移动到下面分屏
+map <LEADER>j <C-w>j
+
+"插件部分
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'Yggdroot/indentLine' 
+Plugin 'scrooloose/nerdtree'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'vim-airline/vim-airline'
+
+call vundle#end()            " required
+filetype plugin indent on    " required
+"设置快捷键启动ctrlp.vim
+let g:airline_cmd = 'CtrlP'
+
