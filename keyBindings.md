@@ -10,3 +10,20 @@
 - skip to address bar: **Ctrl + L**
 - page down: **space**
 - page up: **shift + place**
+
+## 个人快捷键设置
+#### idea
+- ToolBar: Alt+3
+- Status Bar: Alt+4
+- Main menu: Alt+2
+- ToolWindow Project: Alt+1
+- Navigate
+    1. Back: Alt+B
+    2. Forward: Alt+P
+- Window Edit Tabs
+    1. Close: Ctrl+W
+    2. Select Next tab: Shift+K
+    3. Select Previews Tab: Shift+J
+
+
+
