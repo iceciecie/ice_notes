@@ -4,7 +4,6 @@ let mapleader=" "
 "not create temp file
 set noswapfile
 
-execute pathogen#infect()
 "打开高亮
 synta on
 "安装插件配置
@@ -40,9 +39,11 @@ set nocompatible
 set showcmd
 "设置命令补全
 set wildmenu
+"设置自动换行
+set autoindent
 
 "设置颜色主题为默认
-colorscheme desert
+colorscheme default
 
 "设置空格+回车 不显示高亮
 noremap <LEADER><CR> :nohlsearch<CR>
@@ -52,6 +53,8 @@ noremap ;y "+y
 noremap ;p "+p
 "设置tt启动NERDTreeToggle
 noremap tt :NERDTreeToggle<CR>
+"全选
+noremap gga ggVG
 
 "设置插入模式快捷左移动
 inoremap <C-h> <Left>
@@ -80,18 +83,35 @@ map <LEADER>k <C-w>k
 "分屏移动, 移动到下面分屏
 map <LEADER>j <C-w>j
 
+"移动到行尾
+map 4 $
+"快速括号移动
+map 5 %
+
 "插件部分
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+call plug#begin('~/.vim/plugged')
+Plug 'itchyny/lightline.vim'
+Plug 'scrooloose/nerdtree'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'vim-airline/vim-airline'
+call plug#end()
 
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'Yggdroot/indentLine' 
-Plugin 'scrooloose/nerdtree'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'vim-airline/vim-airline'
+"非插入模式, 光标为块状, 插入模式下, 光标为竖线
+if has("autocmd")
+  au VimEnter,InsertLeave * silent execute '!echo -ne "\e[2 q"' | redraw!
+  au InsertEnter,InsertChange *
+    \ if v:insertmode == 'i' | 
+    \   silent execute '!echo -ne "\e[6 q"' | redraw! |
+    \ elseif v:insertmode == 'r' |
+    \   silent execute '!echo -ne "\e[4 q"' | redraw! |
+    \ endif
+  au VimLeave * silent execute '!echo -ne "\e[ q"' | redraw!
+endif
 
-call vundle#end()            " required
-filetype plugin indent on    " required
-"设置快捷键启动ctrlp.vim
-let g:airline_cmd = 'CtrlP'
-
+"格式化xml
+function FormatXml()
+   set filetype=xml
+   :%s/></>\r</g
+   :normal gg=G
+endfunction
+map <leader>fx :call FormatXml()<CR>
